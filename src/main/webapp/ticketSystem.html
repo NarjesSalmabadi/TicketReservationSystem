@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TicketOnlineReservation</title>
+    <style>
+        input[type=number] {
+            padding: 3px 11px;
+            margin: 3px 0;
+            box-sizing: border-box;
+        }
+        input[type=text] {
+            padding: 3px 11px;
+            margin: 3px 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-image: url('airplane.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .container {
+            height: 50%;
+            padding-top: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .st-box {
+            float: left;
+            height: 300px;
+            width: 600px;
+        }
+
+        .rd-box {
+            float: right;
+            height: 300px;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<center><h1>Ticket Reservation System</h1></center>
+<div class="container">
+
+    <div class="st-box">
+        <!--insert-->
+        <fieldset style="background: LightGray; border: 5px solid gray; width: 500px">
+            <legend style="font-size:15px; padding: 6px; background: gray; color: black;"> Ticket Booking</legend>
+            <form method="get" action="ticketBooking">
+                Passenger Full Name: <input type="text" name="fullName" required><br>
+                Passenger Origin: <input type="text" name="origin" required><br>
+                Passenger Destination: <input type="text" name="destination" required><br>
+                Passenger Departure Date: <input type="text" name="departureDate" required><br>
+                Passenger FlightNumber: <input type="number" name="flightNumber" required><br>
+                Book a ticket: <button type="submit" value="book">Book</button>
+            </form>
+        </fieldset><br>
+    </div>
+
+    <div class="rd-box">
+        <!--update-->
+        <fieldset style="background: LightGray; border: 5px solid gray; width: 500px">
+            <legend style="font-size:15px; padding: 6px; background: gray; color: black;"> Ticket Editing</legend>
+            <form method="get" action="ticketEditing">
+                Passenger Ticket Id: <input type="number" name="ticketId" required><br>
+                Passenger New Full Name: <input type="text" name="fullName" required><br>
+                Passenger New Origin: <input type="text" name="origin" required><br>
+                Passenger New Destination: <input type="text" name="destination" required><br>
+                Passenger New Departure Date: <input type="text" name="departureDate" required><br>
+                Passenger New FlightNumber: <input type="number" name="flightNumber" required><br>
+                Edit a ticket: <button type="submit" value="edit">Edit</button>
+            </form>
+        </fieldset><br>
+    </div>
+
+</div>
+<div class="container">
+
+    <div class="st-box">
+        <!--View Ticket-->
+        <fieldset style="background: LightGray; border: 5px solid gray; width: 500px">
+            <legend style="font-size:15px; padding: 6px; background: gray; color: black;"> Ticket Viewing</legend>
+            <form method="get" action="ticketViewing">
+                Passenger Ticket Id: <input type="number" name="ticketId" required><br>
+                View a ticket: <button type="submit" value="view">View</button>
+            </form>
+        </fieldset><br>
+    </div>
+
+    <div class="rd-box">
+        <!--Cancel Ticket-->
+        <fieldset style="background: LightGray; border: 5px solid gray; width: 500px">
+            <legend style="font-size:15px; padding: 6px; background: gray; color: black;"> Ticket Canceling</legend>
+            <form method="get" action="ticketCanceling">
+                Passenger Ticket Id: <input type="number" name="ticketId" required><br>
+                Cancel a ticket: <button type="submit" value="cancel">Cancel</button>
+            </form>
+        </fieldset><br>
+    </div><br>
+    <p class="a" id="myId"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- CSS style to put div side by side -->
+    <style type="text/css">
+        .container {
+            height:700px;
+            background-color:green;
+            padding-top:20px;
+            padding-left:15px;
+            padding-right:15px;
+        }
+        #st-box {
+            float:left;
+            width:400px;
+            height:670px;
+            background-color:white;
+            border:solid black;
+        }
+        #nd-box {
+            float:left;
+            width:500px;
+            height:670px;
+            background-color:white;
+            border:solid black;
+            margin-left:20px;
+        }
+        h1 {
+            color:Green;
+        }
+    </style>
+</head>
+
+<body>
+<center>
+    <h1>Ticket Rest API</h1>
+
+    <div class="container">
+        <div id="st-box">
+            <button id="get">Get All</button>
+            <br><br>
+
+            Passenger TicketId: <input id="getId" type="number"><br>
+            <button id="getById">Get By ID</button>
+            <br><br>
+
+            Passenger Full Name: <input type="text" id="fullName" required><br><br>
+            Passenger Origin: <input type="text" id="origin" required><br><br>
+            Passenger Destination: <input type="text" id="destination" required><br><br>
+            Passenger Departure Date: <input type="text" id="departureDate" required><br><br>
+            Passenger FlightNumber: <input type="number" id="flightNumber" required><br>
+            <button id="post">Post</button>
+            <br><br>
+
+            Passenger Full Name: <input type="text" id="fullName1" required><br><br>
+            Passenger Origin: <input type="text" id="origin1" required><br><br>
+            Passenger Destination: <input type="text" id="destination1" required><br><br>
+            Passenger Departure Date: <input type="text" id="departureDate1" required><br><br>
+            Passenger FlightNumber: <input type="number" id="flightNumber1" required><br><br>
+            Passenger TicketId: <input type="number" id="id1" required><br>
+            <button id="put">Put</button>
+            <br><br>
+
+            Passenger TicketId: <input id="deleteId" type="number"><br>
+            <button id="deleteById">Delete By ID</button>
+            <br><br>
+
+            <button id="delete">Delete All</button>
+            <br>
+
+
+        </div>
+
+        <div id="nd-box">
+            result:
+            <p id="myId"></p>
+        </div>
+
+    </div>
+</center>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest Client</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- CSS style to put div side by side -->
+    <style type="text/css">
+        .container {
+            height: 700px;
+            background-color: green;
+            padding-top: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        #st-box {
+            float: left;
+            width: 400px;
+            height: 670px;
+            background-color: white;
+            border: solid black;
+        }
+
+        #nd-box {
+            float: left;
+            width: 400px;
+            height: 670px;
+            background-color: white;
+            border: solid black;
+            margin-left: 20px;
+        }
+
+        #rd-box {
+            float: right;
+            width: 600px;
+            height: 670px;
+            background-color: white;
+            border: solid black;
+            margin-left: 20px;
+        }
+
+        h1 {
+            color: Green;
+        }
+
+        p.thick {
+            font-weight: bold;
+        }
+
+        p.a {
+            word-break: break-all;
+        }
+
+    </style>
+</head>
+<body>
+<center>
+    <h1>Ticket Rest API</h1>
+    <div class="container">
+
+        <div id="nd-box">
+            <h3>Help</h3>
+            <p class="thick">Get All button: </p> See all tickets in database<br><br>
+            <p class="thick">GetById button: </p> See a ticket with specification id number in database<br><br>
+            <p class="thick">Post button: </p> Create a new ticket in database<br><br>
+            <p class="thick">Put button: </p> Update a ticket that exists in database<br><br>
+            <p class="thick">DeleteById button: </p> Delete a ticket with specification id number from database<br><br>
+            <p class="thick">Delete button: </p> Delete all ticket in database<br><br>
+        </div>
+
+        <div id="st-box">
+            <button id="get">Get All</button>
+            <br><br>
+
+            Passenger TicketId: <input id="getId" type="number"><br>
+            <button id="getById">Get By ID</button>
+            <br><br>
+
+            Passenger Full Name: <input type="text" id="fullName" required><br><br>
+            Passenger Origin: <input type="text" id="origin" required><br><br>
+            Passenger Destination: <input type="text" id="destination" required><br><br>
+            Passenger Departure Date: <input type="text" id="departureDate" required><br><br>
+            Passenger FlightNumber: <input type="number" id="flightNumber" required><br>
+            <button id="post">Post</button>
+            <br><br>
+
+            Passenger Full Name: <input type="text" id="fullName1" required><br><br>
+            Passenger Origin: <input type="text" id="origin1" required><br><br>
+            Passenger Destination: <input type="text" id="destination1" required><br><br>
+            Passenger Departure Date: <input type="text" id="departureDate1" required><br><br>
+            Passenger FlightNumber: <input type="number" id="flightNumber1" required><br><br>
+            Passenger TicketId: <input type="number" id="id1" required><br>
+            <button id="put">Put</button>
+            <br><br>
+
+            Passenger TicketId: <input id="deleteId" type="number"><br>
+            <button id="deleteById">Delete By ID</button>
+            <br><br>
+
+            <button id="delete">Delete All</button>
+            <br>
+        </div>
+
+        <div id="rd-box">
+            <h3>result</h3>
+            <p class="a" id="result"></p>
+        </div>
+
+    </div>
+</center>
+<script>
+    $("#get").click(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/RestTicketReservation_war_exploded/api/tickets",
+            success: function (result) {
+                document.getElementById("result").innerText = JSON.stringify(result);
+            },
+            error: function (result) {
+                $("#result").text(JSON.stringify(result));
+            }
+        });
+    });
+
+    $("#getById").click(function () {
+        var id = $("#getId").val();
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/RestTicketReservation_war_exploded/api/tickets/" + id,
+            success: function (result) {
+                document.getElementById("result").innerText = JSON.stringify(result);
+            },
+            error: function (result) {
+                $("#result").text(JSON.stringify(result));
+            }
+        });
+    });
+
+    $("#post").click(function () {
+        var destination1 = $("#destination").val();
+        var flightNumber1 = $("#flightNumber").val();
+        var origin1 = $("#origin").val();
+        var passengerFullName1 = $("#fullName").val();
+        var date = $("#departureDate").val();
+        var arr = {
+            destination: destination1,
+            flightNumber: flightNumber1,
+            origin: origin1,
+            passengerName: passengerFullName1,
+            departureDate: date
+        };
+        $.ajax({
+            url: "http://localhost:8080/RestTicketReservation_war_exploded/api/tickets",
+            type: "POST",
+            data: JSON.stringify(arr),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                document.getElementById("result").innerText = "insert successfully";
+            },
+            error: function (result) {
+                alert(result);
+            }
+        });
+    });
+
+    $("#put").click(function () {
+        var destination1 = $("#destination1").val();
+        var flightNumber1 = $("#flightNumber1").val();
+        var origin1 = $("#origin1").val();
+        var passengerFullName1 = $("#fullName1").val();
+        var strDate = $("#departureDate1").val();
+        var id = $("#id1").val();
+        var arr = {
+            destination: destination1,
+            flightNumber: flightNumber1,
+            origin: origin1,
+            passengerName: passengerFullName1,
+            departureDate: strDate
+        };
+        $.ajax({
+            url: "http://localhost:8080/RestTicketReservation_war_exploded/api/tickets/" + id,
+            type: "PUT",
+            data: JSON.stringify(arr),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                document.getElementById("result").innerText = JSON.stringify(result);
+            },
+            error: function (result) {
+                alert(result);
+            }
+        });
+    });
+
+    $("#deleteById").click(function () {
+        var id = $("#deleteId").val();
+        $.ajax({
+            type: "DELETE",
+            url: "http://localhost:8080/RestTicketReservation_war_exploded/api/tickets/" + id,
+            success: function (result) {
+                document.getElementById("result").innerText = JSON.stringify(result);
+            },
+            error: function (result) {
+                $("#result").text(JSON.stringify(result));
+            }
+        });
+    });
+
+    $("#delete").click(function () {
+        $.ajax({
+            type: "DELETE",
+            url: "http://localhost:8080/RestTicketReservation_war_exploded/api/tickets",
+            success: function (result) {
+                document.getElementById("result").innerText = JSON.stringify(result);
+            },
+            error: function (result) {
+                $("#result").text(JSON.stringify(result));
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
